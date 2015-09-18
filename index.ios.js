@@ -16,44 +16,54 @@ var {
 var Facesmash = React.createClass({
   getInitialState(){
     return {
-      selectedTab: 'Facesmash'
+      selectedTab: 'facesmash'
     }
+  },
+  changeTab(tabName){
+    this.setState({
+      selectedTab: tabName
+    });
   },
   render: function() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <TabBarIOS>
+        <TabBarIOS.Item
+          title = "Facesmash"
+          icon = {require ('image!message')}
+          onPress={ () => this.changeTab('facesmash') }
+          selected = {this.state.selectedTab === 'facesmash'}>
+          <View style = {styles.pageView}>
+            <Text>Home</Text>
+          </View>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          title = "Messages"
+          icon = {require ('image!message')}
+          onPress={ () => this.changeTab('message') }
+          selected = {this.state.selectedTab === 'message'}>
+          <View style = {styles.pageView}>
+            <Text>Message</Text>
+          </View>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          title = "Settings"
+          icon = {require ('image!message')}
+          onPress={ () => this.changeTab('settings') }
+          selected = {this.state.selectedTab === 'settings'}>
+          <View style = {styles.pageView}>
+            <Text>Settings</Text>
+          </View>
+        </TabBarIOS.Item>
+      </TabBarIOS>
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  pageView: {
+    backgroundColor: '#fff',
+    flex: 1
+  }
 });
 
 AppRegistry.registerComponent('Facesmash', () => Facesmash);
